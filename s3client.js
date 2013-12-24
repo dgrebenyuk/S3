@@ -2,7 +2,6 @@ Handlebars.registerHelper('S3', function (options) {
 	var uploadOptions = options.hash;
 	var template = options.fn;
 	var callback = uploadOptions.callback;
-	var context = this;
 
     if (!template) return;
 
@@ -24,7 +23,7 @@ Handlebars.registerHelper('S3', function (options) {
 
 				reader.onload = function () {
 					fileData.data = new Uint8Array(reader.result);
-					Meteor.call("S3upload",fileData,context,callback);
+					Meteor.call("S3upload",fileData,callback);
 				};
 
 				reader.readAsArrayBuffer(file);
